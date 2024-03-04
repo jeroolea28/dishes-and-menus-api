@@ -18,18 +18,20 @@ router.put('/:id/edit', (req, res, next) => {
     const { id: menuId } = req.params
     const { appetizers, mainDishes, desserts, drinks, owner } = req.body
 
-    Menu.findByIdAndUpdate(
-        menuId,
-        { appetizers, mainDishes, desserts, drinks, owner },
-        { new: true, runValidators: true }
-    )
-    .then(updatedMenu => res.json(updatedMenu))
-    .catch(err => next(err))
+    Menu
+        .findByIdAndUpdate(
+            menuId,
+            { appetizers, mainDishes, desserts, drinks, owner },
+            { new: true, runValidators: true }
+        )
+        .then(updatedMenu => res.json(updatedMenu))
+        .catch(err => next(err))
 })
 
 router.get('/', (req, res, next) => {
 
-    Menu.find()
+    Menu
+        .find()
         .populate('appetizers mainDishes desserts drinks owner')
         .then(allMenus => res.json(allMenus))
         .catch(err => next(err))
@@ -38,7 +40,8 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     const { id: menuId } = req.params
 
-    Menu.findById(menuId)
+    Menu
+        .findById(menuId)
         .populate('appetizers mainDishes desserts drinks owner')
         .then(menu => res.json(menu))
         .catch(err => next(err))
@@ -47,7 +50,8 @@ router.get('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     const { id: menuId } = req.params
 
-    Menu.findByIdAndDelete(menuId)
+    Menu
+        .findByIdAndDelete(menuId)
         .then(() => res.sendStatus(202))
         .catch(err => next(err))
 })
