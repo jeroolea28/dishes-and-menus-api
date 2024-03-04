@@ -10,6 +10,10 @@ const dishSchema = new Schema(
             type: String,
             required: true
         },
+        image:{
+            type: String,
+            required: false
+        },
         ingredients: {
             type: [String],
             required: true

@@ -2,18 +2,17 @@ const express = require("express")
 const router = express.Router()
 const Dish = require('./../models/Dish.model')
 
+
+// TODO: NORMALIZAR BLOQUES EN THEN Y CATCH
+
 router.post('/create', (req, res, next) => {
 
     const {name, description, ingredients, image, vegetarian, vegan, spicyness, price} = req.body
 
     Dish
         .create({name, description, ingredients, image, vegetarian, vegan, spicyness, price})
-        .then(createdDish => {
-            res.status(201).json({ createdDish })
-        })
-        .catch(err => {
-            next(err)
-        })
+        .then(createdDish => res.status(201).json({ createdDish }))
+        .catch(err => next(err))
 })
 
 router.put('/:id/edit', (req, res, next) => {
@@ -28,15 +27,15 @@ router.put('/:id/edit', (req, res, next) => {
             {name, description, ingredients, image, vegetarian, vegan, spicyness, price}, 
             { new: true, runValidators: true })
         .then(updatedDish => res.json(updatedDish))
-        .catch(err => {next(err)})
+        .catch(err => next(err))
 })
 
 router.get('/', (req, res, next) => {
 
     Dish
         .find()
-        .then(allDishes => { res.status(201).json(allDishes)})
-        .catch(err => {next(err)})
+        .then(allDishes => { res.json(allDishes)})
+        .catch(err => next(err))
 })
 
 router.get('/:id', (req, res, next) => {
