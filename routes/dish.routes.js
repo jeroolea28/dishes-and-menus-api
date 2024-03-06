@@ -3,8 +3,6 @@ const router = express.Router()
 const Dish = require('./../models/Dish.model')
 
 
-// TODO: NORMALIZAR BLOQUES EN THEN Y CATCH
-
 router.post('/create', (req, res, next) => {
 
     const {name, description, ingredients, image, vegetarian, vegan, spicyness, price} = req.body
@@ -30,7 +28,7 @@ router.put('/:id/edit', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/', (req, res, next) => {
+router.get('/allDishes', (req, res, next) => {
 
     Dish
         .find()

@@ -26,7 +26,7 @@ const dishSchema = new Schema(
             type: Boolean,
             required: false
         },
-        spicyness: {
+        spiciness: {
             type: [String],
             enum: ['Not Spicy', 'Mild', 'Spicy', 'Very Spicy'],
             required: false
