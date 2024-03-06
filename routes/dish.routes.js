@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const Dish = require('./../models/Dish.model')
+const {isAuthenticated} = require('./../middleware/jwt.middleware')
 
-
-router.post('/create', (req, res, next) => {
+router.post('/create', isAuthenticated, (req, res, next) => {
 
     const {name, description, ingredients, image, vegetarian, vegan, spicyness, price} = req.body
 
