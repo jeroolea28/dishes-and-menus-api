@@ -8,4 +8,7 @@ module.exports = app => {
 
     const menuRouter = require('./menu.routes')
     app.use('/api/menu', menuRouter)
+
+    const imageRouter = require('./uploader.routes')
+    app.use('/api/uploader', imageRouter)
 }
