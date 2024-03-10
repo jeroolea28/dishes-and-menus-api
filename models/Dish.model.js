@@ -10,9 +10,9 @@ const dishSchema = new Schema(
             type: String,
             required: true
         },
-        image:{
+        imageData:{
             type: String,
-            required: false
+            required: true
         },
         ingredients: {
             type: [String],
@@ -27,8 +27,7 @@ const dishSchema = new Schema(
             required: false
         },
         spiciness: {
-            type: [String],
-            enum: ['Not Spicy', 'Mild', 'Spicy', 'Very Spicy'],
+            type: String,
             required: false
         },
         price: {
