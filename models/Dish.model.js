@@ -34,6 +34,10 @@ const dishSchema = new Schema(
             type: Number,
             required: true
         },
+        type: {
+            type: String,
+            required: false
+        },
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'User',
