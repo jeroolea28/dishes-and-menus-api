@@ -5,10 +5,10 @@ const {isAuthenticated} = require('./../middleware/jwt.middleware')
 
 router.post('/create', isAuthenticated, (req, res, next) => {
 
-    const {name, description, ingredients, image, vegetarian, vegan, spicyness, price} = req.body
+    const {name, description, ingredients, imageData, vegetarian, vegan, spicyness, price, owner} = req.body
 
     Dish
-        .create({name, description, ingredients, image, vegetarian, vegan, spicyness, price})
+        .create({name, description, ingredients, imageData, vegetarian, vegan, spicyness, price, owner})
         .then(createdDish => res.status(201).json({ createdDish }))
         .catch(err => next(err))
 })
@@ -17,12 +17,12 @@ router.put('/:id/edit', (req, res, next) => {
 
     const { id: dishId } = req.params
 
-    const {name, description, ingredients, image, vegetarian, vegan, spicyness, price} = req.body
+    const {name, description, ingredients, imageData, vegetarian, vegan, spicyness, price, owner} = req.body
 
     Dish
         .findByIdAndUpdate(
             dishId, 
-            {name, description, ingredients, image, vegetarian, vegan, spicyness, price}, 
+            {name, description, ingredients, imageData, vegetarian, vegan, spicyness, price, owner}, 
             { new: true, runValidators: true })
         .then(updatedDish => res.json(updatedDish))
         .catch(err => next(err))
