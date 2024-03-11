@@ -28,10 +28,12 @@ router.put('/:id/edit', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/allDishes', (req, res, next) => {
+router.get('/allDishes/:id', isAuthenticated, (req, res, next) => {
+
+    const {id: userId} = req.params
 
     Dish
-        .find()
+        .find({ owner: userId })
         .then(allDishes => { res.json(allDishes)})
         .catch(err => next(err))
 })
