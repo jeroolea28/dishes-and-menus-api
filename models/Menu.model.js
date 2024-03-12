@@ -16,8 +16,7 @@ const menuSchema = new Schema(
         }],
         drinks:  [{
             type: Schema.Types.ObjectId,
-            ref: 'Dish',
-            alcoholic: Boolean
+            ref: 'Dish'
         }],
         owner: {
             type: Schema.Types.ObjectId,
