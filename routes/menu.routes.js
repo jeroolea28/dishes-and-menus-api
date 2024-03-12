@@ -5,10 +5,10 @@ const Menu = require('./../models/Menu.model')
 
 router.post('/create', (req, res, next) => {
 
-    const { appetizers, mainDishes, desserts, drinks } = req.body
+    const { name, appetizers, mainDishes, desserts, drinks } = req.body
 
     Menu
-        .create({ appetizers, mainDishes, desserts, drinks })
+        .create({name, appetizers, mainDishes, desserts, drinks })
         .then(createdMenu => res.status(201).json(createdMenu))
         .catch(err => next(err))
 })

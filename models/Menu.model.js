@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose")
 
 const menuSchema = new Schema(
     {
+        name: {
+            type: String,
+            required: true
+        },
         appetizers: [{
             type: Schema.Types.ObjectId,
             ref: 'Dish'
